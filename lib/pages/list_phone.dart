@@ -25,9 +25,21 @@ const List<String> itemsTextList = <String>[
   "iPhone 15",
   "iPhone 12"
 ];
+const List<String> itemsCostList = <String>[
+  "5.000p",
+  "6.000p",
+  "2.000p",
+  "20.000p",
+  "17.000p",
+  "90.000p",
+  "70.000p",
+  "6.000p",
+  "110.000p",
+  "52.000p"
+];
 
 class ListPhone extends StatelessWidget {
-  const ListPhone({super.key});
+  const ListPhone({super.key, required String ImageContext, required String TextContext});
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +51,16 @@ class ListPhone extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: ListView.builder(
-            itemCount: itemsImageList.length,
-            itemBuilder: (context, index)
+        child: GridView.count(
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 5,
+            crossAxisCount: 2,
+            children: List.generate(itemsImageList.length, (index)
             {
-              return ItemListPhone(itemImage: itemsImageList[index], itemText: itemsTextList[index]);
+              return ItemListPhone(itemImage: itemsImageList[index], itemText: itemsTextList[index], itemCost: itemsCostList[index]);
             }
         ),
-
+        ),
     ),
     );
   }
